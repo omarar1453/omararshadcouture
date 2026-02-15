@@ -4,6 +4,7 @@ import StoriesBar from './components/StoriesBar';
 import Hero from './components/Hero';
 import VideoReels from './components/VideoReels';
 import TrustBar from './components/TrustBar';
+import ProductCategories from './components/ProductCategories';
 import GalleryGrid from './components/GalleryGrid';
 import ProcessSection from './components/ProcessSection';
 import PricingSection from './components/PricingSection';
@@ -22,6 +23,7 @@ function App() {
       <Hero />
       <VideoReels />
       <TrustBar />
+      <ProductCategories />
       <GalleryGrid />
       <ProcessSection />
       <PricingSection />

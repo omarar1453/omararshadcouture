@@ -13,7 +13,7 @@ const faqs = [
   },
   {
     q: 'How long does shipping take to the USA, UK, or Canada?',
-    a: 'Production takes 15-25 days depending on design complexity. Shipping is free worldwide via express courier (DHL/FedEx) and typically takes 5-7 business days. You will receive a tracking number once your order ships.',
+    a: 'Production takes 4-8 weeks depending on design complexity and embroidery work. Simple designs (sarees, light embroidery) take 4-5 weeks, while heavy bridal lehengas take 6-8 weeks. Shipping is free worldwide via express courier (DHL/FedEx) and typically takes 5-7 business days. You will receive a tracking number once your order ships.',
   },
   {
     q: 'What if the dress doesn\'t fit?',

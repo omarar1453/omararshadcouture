@@ -7,7 +7,7 @@ const tiers = [
     name: 'Saree & Simple Designs',
     priceUsd: 950,
     label: 'From',
-    delivery: '15-18 Days',
+    delivery: '4-5 Weeks',
     features: [
       'Premium fabric selection',
       'Custom measurements',
@@ -21,7 +21,7 @@ const tiers = [
     name: 'Lehenga Choli & Nikkah',
     priceUsd: 1800,
     label: 'From',
-    delivery: '18-22 Days',
+    delivery: '5-6 Weeks',
     features: [
       'Premium fabric selection',
       'Custom measurements',
@@ -37,7 +37,7 @@ const tiers = [
     name: 'Heavy Bridal',
     priceUsd: 2500,
     label: 'From',
-    delivery: '20-25 Days',
+    delivery: '6-8 Weeks',
     features: [
       'Luxury fabric selection',
       'Custom measurements',

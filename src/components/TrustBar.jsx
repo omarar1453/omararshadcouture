@@ -4,7 +4,7 @@ import { Ruler, ShieldCheck, Globe, Clock } from 'lucide-react';
 const TrustBar = () => {
   const badges = [
     { icon: <Globe size={20} />, label: 'Ships to USA, UK & Canada' },
-    { icon: <Clock size={20} />, label: '15-20 Day Delivery' },
+    { icon: <Clock size={20} />, label: '4-8 Week Delivery' },
     { icon: <Ruler size={20} />, label: '100% Custom Made' },
     { icon: <ShieldCheck size={20} />, label: 'Satisfaction Guaranteed' },
   ];
