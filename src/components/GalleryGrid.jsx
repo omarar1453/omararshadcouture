@@ -1,90 +1,139 @@
 import React, { useState, useEffect } from 'react';
-import { MessageCircle } from 'lucide-react';
+import { MessageCircle, ChevronLeft, ChevronRight } from 'lucide-react';
 import { openWhatsApp, CURRENCIES, formatPrice, getCurrencyForCountry } from '../utils/tracking';
 
-// Portfolio items — real product photos from our collection
+// Portfolio items — 5 real products, 2 images each
 const PORTFOLIO = [
   {
     id: 1,
-    title: 'Gold & Pink Bridal Lehenga',
-    category: 'Heavy Bridal',
-    image: '/images/portfolio/gallery-1.jpg',
+    title: 'Gold & Pink Heavy Bridal Lehenga',
+    category: 'Bridal Lehenga',
+    images: ['/images/portfolio/gallery-1.jpg', '/images/portfolio/gallery-2.jpg'],
     priceUsd: 2500,
     tag: 'red-bridal',
+    description: 'Handcrafted gold & pink lehenga with heavy zardozi, dabka work and intricate embroidery on premium fabric.',
   },
   {
     id: 2,
-    title: 'Royal Gold Bridal Set',
-    category: 'Heavy Bridal',
-    image: '/images/portfolio/gallery-2.jpg',
+    title: 'Deep Maroon Velvet Bridal',
+    category: 'Bridal Gharara',
+    images: ['/images/portfolio/gallery-3.jpg', '/images/portfolio/gallery-4.jpg'],
     priceUsd: 2200,
     tag: 'red-bridal',
+    description: 'Rich maroon velvet bridal gharara with gold hand embroidery and statement dupatta. Perfect for baraat.',
   },
   {
     id: 3,
-    title: 'Deep Maroon Bridal Gharara',
-    category: 'Gharara',
-    image: '/images/portfolio/gallery-3.jpg',
-    priceUsd: 1800,
-    tag: 'lehenga-choli',
+    title: 'Maroon & Gold Bridal Lehenga',
+    category: 'Heavy Bridal',
+    images: ['/images/portfolio/gallery-5.jpg', '/images/portfolio/gallery-6.jpg'],
+    priceUsd: 2500,
+    tag: 'red-bridal',
+    description: 'Deep maroon bridal lehenga with all-over gold embroidery, kundan and sequin detailing on organza.',
   },
   {
     id: 4,
-    title: 'Maroon Velvet Bridal',
-    category: 'Heavy Bridal',
-    image: '/images/portfolio/gallery-4.jpg',
-    priceUsd: 2500,
-    tag: 'red-bridal',
+    title: 'Rust & Coral Signature Bridal',
+    category: 'Bridal Gown',
+    images: ['/images/portfolio/gallery-7.jpg', '/images/portfolio/gallery-8.jpg'],
+    priceUsd: 1800,
+    tag: 'lehenga-choli',
+    description: 'Rust and coral tones with hand embroidery, peacock motifs on cotton net shirt with banarsi jamawar lehnga.',
   },
   {
     id: 5,
-    title: 'Maroon Bridal Close-Up',
-    category: 'Heavy Bridal',
-    image: '/images/portfolio/gallery-5.jpg',
-    priceUsd: 2200,
-    tag: 'red-bridal',
-  },
-  {
-    id: 6,
-    title: 'Embroidered Bridal Lehenga',
-    category: 'Lehenga Choli',
-    image: '/images/portfolio/gallery-6.jpg',
-    priceUsd: 1800,
-    tag: 'lehenga-choli',
-  },
-  {
-    id: 7,
-    title: 'Rust & Gold Bridal Gown',
-    category: 'Bridal Gown',
-    image: '/images/portfolio/gallery-7.jpg',
-    priceUsd: 1800,
-    tag: 'lehenga-choli',
-  },
-  {
-    id: 8,
-    title: 'Coral Embroidered Bridal',
-    category: 'Heavy Bridal',
-    image: '/images/portfolio/gallery-8.jpg',
-    priceUsd: 2500,
-    tag: 'red-bridal',
-  },
-  {
-    id: 9,
     title: 'Red & Gold Barat Jora',
-    category: 'Heavy Bridal',
-    image: '/images/portfolio/gallery-9.jpg',
+    category: 'Bridal Sharara',
+    images: ['/images/portfolio/gallery-9.jpg', '/images/portfolio/gallery-10.jpg'],
     priceUsd: 2500,
     tag: 'red-bridal',
-  },
-  {
-    id: 10,
-    title: 'Maroon Bridal Sharara',
-    category: 'Sharara',
-    image: '/images/portfolio/gallery-10.jpg',
-    priceUsd: 1800,
-    tag: 'lehenga-choli',
+    description: 'Classic red and gold barat jora with heavy hand embroidery, perfect for the traditional Pakistani bride.',
   },
 ];
+
+const GalleryCard = ({ item, currency }) => {
+  const [imgIndex, setImgIndex] = useState(0);
+  const images = item.images || [item.image];
+
+  return (
+    <div className="group bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-lg transition-all border border-divider-gold">
+      {/* Image area with slideshow */}
+      <div className="aspect-[3/4] overflow-hidden bg-pastel-pink/20 relative">
+        <img
+          src={images[imgIndex]}
+          alt={`${item.title} — view ${imgIndex + 1}`}
+          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+          loading="lazy"
+          onError={(e) => {
+            e.target.src = `https://placehold.co/600x800/FCF9F2/B8860B?text=${encodeURIComponent(item.title)}`;
+          }}
+        />
+
+        {/* Navigation arrows — only if multiple images */}
+        {images.length > 1 && (
+          <>
+            <button
+              onClick={(e) => { e.stopPropagation(); setImgIndex(i => i === 0 ? images.length - 1 : i - 1); }}
+              className="absolute left-2 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full bg-white/80 hover:bg-white flex items-center justify-center shadow-md opacity-0 group-hover:opacity-100 transition-opacity z-10"
+            >
+              <ChevronLeft size={16} className="text-text-primary" />
+            </button>
+            <button
+              onClick={(e) => { e.stopPropagation(); setImgIndex(i => i === images.length - 1 ? 0 : i + 1); }}
+              className="absolute right-2 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full bg-white/80 hover:bg-white flex items-center justify-center shadow-md opacity-0 group-hover:opacity-100 transition-opacity z-10"
+            >
+              <ChevronRight size={16} className="text-text-primary" />
+            </button>
+
+            {/* Dot indicators */}
+            <div className="absolute bottom-2 left-0 right-0 flex justify-center gap-1.5 z-10">
+              {images.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={(e) => { e.stopPropagation(); setImgIndex(i); }}
+                  className={`w-1.5 h-1.5 rounded-full transition-all ${
+                    i === imgIndex ? 'bg-white w-3' : 'bg-white/50'
+                  }`}
+                />
+              ))}
+            </div>
+          </>
+        )}
+      </div>
+
+      {/* Info */}
+      <div className="p-4">
+        <p className="text-xs text-antique-gold uppercase tracking-wider font-medium mb-1">
+          {item.category}
+        </p>
+        <h3 className="text-base font-serif text-text-primary mb-1">
+          {item.title}
+        </h3>
+        {item.description && (
+          <p className="text-xs text-text-secondary mb-3 leading-relaxed line-clamp-2">
+            {item.description}
+          </p>
+        )}
+        <div className="flex items-center justify-between">
+          <span className="text-lg font-semibold text-text-primary">
+            {formatPrice(item.priceUsd, currency)}
+          </span>
+          <button
+            onClick={() => openWhatsApp(
+              `Hi, I am interested in "${item.title}" (${formatPrice(item.priceUsd, currency)}). Can I get a similar one custom-made?`,
+              'gallery_enquiry',
+              { item_id: item.id, item_name: item.title, item_price: item.priceUsd }
+            )}
+            className="flex items-center gap-1.5 bg-antique-gold/10 hover:bg-antique-gold hover:text-white text-antique-gold px-3 py-1.5 rounded-full text-xs font-medium transition-all"
+          >
+            <MessageCircle size={12} fill="currentColor" strokeWidth={0} />
+            Get Quote
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 const GalleryGrid = () => {
   const [currency, setCurrency] = useState(CURRENCIES[0]);
@@ -102,8 +151,7 @@ const GalleryGrid = () => {
   const filters = [
     { key: 'all', label: 'All' },
     { key: 'red-bridal', label: 'Heavy Bridal' },
-    { key: 'lehenga-choli', label: 'Lehenga Choli' },
-    { key: 'saree', label: 'Saree' },
+    { key: 'lehenga-choli', label: 'Lehenga & Gown' },
   ];
 
   const filtered = filter === 'all' ? PORTFOLIO : PORTFOLIO.filter(p => p.tag === filter);
@@ -141,48 +189,9 @@ const GalleryGrid = () => {
         </div>
 
         {/* Grid */}
-        <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
           {filtered.map(item => (
-            <div
-              key={item.id}
-              className="group bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-lg transition-all border border-divider-gold"
-            >
-              <div className="aspect-[3/4] overflow-hidden bg-pastel-pink/20">
-                <img
-                  src={item.image}
-                  alt={item.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                  loading="lazy"
-                  onError={(e) => {
-                    e.target.src = `https://placehold.co/600x800/FCF9F2/B8860B?text=${encodeURIComponent(item.title)}`;
-                  }}
-                />
-              </div>
-              <div className="p-4">
-                <p className="text-xs text-antique-gold uppercase tracking-wider font-medium mb-1">
-                  {item.category}
-                </p>
-                <h3 className="text-base font-serif text-text-primary mb-2">
-                  {item.title}
-                </h3>
-                <div className="flex items-center justify-between">
-                  <span className="text-lg font-semibold text-text-primary">
-                    {formatPrice(item.priceUsd, currency)}
-                  </span>
-                  <button
-                    onClick={() => openWhatsApp(
-                      `Hi, I am interested in "${item.title}" (${formatPrice(item.priceUsd, currency)}). Is it available? Can I get a similar one custom-made?`,
-                      'gallery_enquiry',
-                      { item_id: item.id, item_name: item.title, item_price: item.priceUsd }
-                    )}
-                    className="flex items-center gap-1 text-antique-gold hover:text-text-primary text-xs font-medium transition-colors"
-                  >
-                    <MessageCircle size={12} fill="currentColor" strokeWidth={0} />
-                    Enquire
-                  </button>
-                </div>
-              </div>
-            </div>
+            <GalleryCard key={item.id} item={item} currency={currency} />
           ))}
         </div>
       </div>
