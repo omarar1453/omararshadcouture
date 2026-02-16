@@ -48,23 +48,23 @@ const StickyHeader = () => {
     <nav
       className={`fixed w-full z-50 transition-all duration-500 ${
         isScrolled
-          ? 'bg-ivory/95 backdrop-blur-md py-2 shadow-sm border-b border-divider-gold'
-          : 'bg-ivory/80 backdrop-blur-sm py-3'
+          ? 'bg-[#2C2420]/95 backdrop-blur-md py-2 shadow-lg'
+          : 'bg-[#2C2420] py-3'
       }`}
     >
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-center relative">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-center relative pb-2 border-b border-[#4A3F36]">
         {/* Share & Save icons — right */}
         <div className="absolute right-4 sm:right-6 flex items-center gap-3">
           <button
             onClick={handleShare}
-            className="text-text-primary hover:text-antique-gold transition-colors"
+            className="text-white/80 hover:text-antique-gold transition-colors"
             aria-label="Share"
           >
             <Share2 size={20} strokeWidth={1.8} />
           </button>
           <button
             onClick={handleSave}
-            className="text-text-primary hover:text-antique-gold transition-colors"
+            className="text-white/80 hover:text-antique-gold transition-colors"
             aria-label="Save"
           >
             <Bookmark
@@ -78,7 +78,7 @@ const StickyHeader = () => {
 
         {/* Centered brand logo */}
         <div className="flex flex-col items-center">
-          <h1 className="font-logo text-2xl sm:text-3xl text-text-primary leading-none">
+          <h1 className="font-logo text-2xl sm:text-3xl text-white leading-none">
             Omar Arshad <span className="text-antique-gold">Couture</span>
           </h1>
         </div>
