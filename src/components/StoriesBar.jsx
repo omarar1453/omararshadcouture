@@ -212,128 +212,135 @@ const StoriesBar = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[100] bg-black flex flex-col"
+            className="fixed inset-0 z-[100] bg-black/95 flex items-center justify-center"
+            onClick={closeViewer}
           >
-            {/* Multi-segment progress bar */}
-            <div className="absolute top-0 left-0 right-0 px-3 pt-3 flex gap-1 z-50">
-              {currentGroup.items.map((item, idx) => (
-                <div key={item.id} className="h-[3px] flex-1 bg-white/25 rounded-full overflow-hidden">
-                  <div
-                    className="h-full bg-white rounded-full transition-all duration-100 ease-linear"
-                    style={{
-                      width: idx < activeItemIndex ? '100%'
-                           : idx === activeItemIndex ? `${progress}%`
-                           : '0%'
-                    }}
-                  />
-                </div>
-              ))}
-            </div>
-
-            {/* Header: group info + controls */}
-            <div className="absolute top-6 left-0 right-0 px-4 flex items-center justify-between z-50">
-              <div className="flex items-center gap-2.5">
-                <img
-                  src={currentGroup.thumbnail}
-                  alt=""
-                  className="w-8 h-8 rounded-full object-cover border border-white/30"
-                  onError={(e) => { e.target.style.display = 'none'; }}
-                />
-                <span className="text-white text-sm font-medium">{currentGroup.username}</span>
-              </div>
-              <div className="flex items-center gap-3">
-                <button
-                  onClick={() => setIsMuted(!isMuted)}
-                  className="text-white/80 hover:text-white transition-colors"
-                >
-                  {isMuted ? <VolumeX size={20} /> : <Volume2 size={20} />}
-                </button>
-                <button
-                  onClick={closeViewer}
-                  className="text-white hover:text-white/80 transition-colors"
-                >
-                  <X size={24} />
-                </button>
-              </div>
-            </div>
-
-            {/* Content area with tap zones */}
+            {/* Vertical phone-like container — max 9:16 aspect on desktop, fullscreen on mobile */}
             <div
-              className="flex-1 relative flex items-center justify-center"
-              onMouseDown={() => setIsPaused(true)}
-              onMouseUp={() => setIsPaused(false)}
-              onTouchStart={() => setIsPaused(true)}
-              onTouchEnd={() => setIsPaused(false)}
+              className="relative w-full h-full md:w-auto md:h-[95vh] md:aspect-[9/16] md:rounded-2xl md:overflow-hidden bg-black"
+              onClick={(e) => e.stopPropagation()}
             >
-              {/* Left tap zone - go back */}
+              {/* Multi-segment progress bar */}
+              <div className="absolute top-0 left-0 right-0 px-3 pt-3 flex gap-1 z-50">
+                {currentGroup.items.map((item, idx) => (
+                  <div key={item.id} className="h-[3px] flex-1 bg-white/25 rounded-full overflow-hidden">
+                    <div
+                      className="h-full bg-white rounded-full transition-all duration-100 ease-linear"
+                      style={{
+                        width: idx < activeItemIndex ? '100%'
+                             : idx === activeItemIndex ? `${progress}%`
+                             : '0%'
+                      }}
+                    />
+                  </div>
+                ))}
+              </div>
+
+              {/* Header: group info + controls */}
+              <div className="absolute top-6 left-0 right-0 px-4 flex items-center justify-between z-50">
+                <div className="flex items-center gap-2.5">
+                  <img
+                    src={currentGroup.thumbnail}
+                    alt=""
+                    className="w-8 h-8 rounded-full object-cover border border-white/30"
+                    onError={(e) => { e.target.style.display = 'none'; }}
+                  />
+                  <span className="text-white text-sm font-medium">{currentGroup.username}</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <button
+                    onClick={() => setIsMuted(!isMuted)}
+                    className="text-white/80 hover:text-white transition-colors"
+                  >
+                    {isMuted ? <VolumeX size={20} /> : <Volume2 size={20} />}
+                  </button>
+                  <button
+                    onClick={closeViewer}
+                    className="text-white hover:text-white/80 transition-colors"
+                  >
+                    <X size={24} />
+                  </button>
+                </div>
+              </div>
+
+              {/* Content area with tap zones */}
               <div
-                className="absolute left-0 top-0 bottom-0 w-[30%] z-40 cursor-pointer"
-                onClick={goBack}
-              />
-              {/* Right tap zone - advance */}
-              <div
-                className="absolute right-0 top-0 bottom-0 w-[70%] z-40 cursor-pointer"
-                onClick={advanceStory}
-              />
-
-              {/* Video or Image content */}
-              {currentItem.type === 'video' ? (
-                <video
-                  ref={videoRef}
-                  key={currentItem.id}
-                  src={currentItem.src}
-                  poster={currentItem.poster}
-                  autoPlay
-                  muted={isMuted}
-                  playsInline
-                  className="w-full h-full object-contain"
-                  onEnded={advanceStory}
-                  onError={(e) => { e.target.style.display = 'none'; }}
-                />
-              ) : (
-                <img
-                  key={currentItem.id}
-                  src={currentItem.src}
-                  alt={currentItem.caption || ''}
-                  className="w-full h-full object-contain"
-                  onError={(e) => { e.target.style.display = 'none'; }}
-                />
-              )}
-            </div>
-
-            {/* Bottom CTA overlay */}
-            <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 via-black/40 to-transparent z-50">
-              {currentItem.caption && (
-                <p className="text-white text-sm mb-4 text-center font-light">
-                  {currentItem.caption}
-                </p>
-              )}
-
-              <button
-                onClick={() => {
-                  openWhatsApp(
-                    currentItem.ctaMessage,
-                    'story_cta',
-                    { story_group: currentGroup.username, story_item: currentItem.id }
-                  );
-                }}
-                className="w-full flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#20BD5A] text-white py-3.5 rounded-full text-sm font-semibold transition-all"
+                className="w-full h-full relative flex items-center justify-center"
+                onMouseDown={() => setIsPaused(true)}
+                onMouseUp={() => setIsPaused(false)}
+                onTouchStart={() => setIsPaused(true)}
+                onTouchEnd={() => setIsPaused(false)}
               >
-                <MessageCircle size={18} fill="white" strokeWidth={0} />
-                {currentItem.ctaText || 'Enquire on WhatsApp'}
-              </button>
+                {/* Left tap zone - go back */}
+                <div
+                  className="absolute left-0 top-0 bottom-0 w-[30%] z-40 cursor-pointer"
+                  onClick={goBack}
+                />
+                {/* Right tap zone - advance */}
+                <div
+                  className="absolute right-0 top-0 bottom-0 w-[70%] z-40 cursor-pointer"
+                  onClick={advanceStory}
+                />
 
-              {currentItem.linkUrl && (
-                <a
-                  href={currentItem.linkUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-1.5 mt-3 text-white/70 text-xs hover:text-white transition-colors"
+                {/* Video or Image content */}
+                {currentItem.type === 'video' ? (
+                  <video
+                    ref={videoRef}
+                    key={currentItem.id}
+                    src={currentItem.src}
+                    poster={currentItem.poster}
+                    autoPlay
+                    muted={isMuted}
+                    playsInline
+                    className="w-full h-full object-cover"
+                    onEnded={advanceStory}
+                    onError={(e) => { e.target.style.display = 'none'; }}
+                  />
+                ) : (
+                  <img
+                    key={currentItem.id}
+                    src={currentItem.src}
+                    alt={currentItem.caption || ''}
+                    className="w-full h-full object-cover"
+                    onError={(e) => { e.target.style.display = 'none'; }}
+                  />
+                )}
+              </div>
+
+              {/* Bottom CTA overlay */}
+              <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 via-black/40 to-transparent z-50">
+                {currentItem.caption && (
+                  <p className="text-white text-sm mb-4 text-center font-light">
+                    {currentItem.caption}
+                  </p>
+                )}
+
+                <button
+                  onClick={() => {
+                    openWhatsApp(
+                      currentItem.ctaMessage,
+                      'story_cta',
+                      { story_group: currentGroup.username, story_item: currentItem.id }
+                    );
+                  }}
+                  className="w-full flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#20BD5A] text-white py-3.5 rounded-full text-sm font-semibold transition-all"
                 >
-                  <ExternalLink size={12} />
-                  Learn More
-                </a>
-              )}
+                  <MessageCircle size={18} fill="white" strokeWidth={0} />
+                  {currentItem.ctaText || 'Enquire on WhatsApp'}
+                </button>
+
+                {currentItem.linkUrl && (
+                  <a
+                    href={currentItem.linkUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center gap-1.5 mt-3 text-white/70 text-xs hover:text-white transition-colors"
+                  >
+                    <ExternalLink size={12} />
+                    Learn More
+                  </a>
+                )}
+              </div>
             </div>
           </motion.div>
         )}
