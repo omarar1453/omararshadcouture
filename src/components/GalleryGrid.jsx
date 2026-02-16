@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { MessageCircle, ChevronLeft, ChevronRight } from 'lucide-react';
 import { openWhatsApp, CURRENCIES, formatPrice, getCurrencyForCountry } from '../utils/tracking';
 
-// Portfolio items — 5 real products, 2 images each
+// Portfolio items — 13 real products, 2 images each
 const PORTFOLIO = [
   {
     id: 1,
@@ -10,7 +10,7 @@ const PORTFOLIO = [
     category: 'Bridal Lehenga',
     images: ['/images/portfolio/gallery-1.jpg', '/images/portfolio/gallery-2.jpg'],
     priceUsd: 2500,
-    tag: 'red-bridal',
+    tag: 'bridal',
     description: 'Handcrafted gold & pink lehenga with heavy zardozi, dabka work and intricate embroidery on premium fabric.',
   },
   {
@@ -19,7 +19,7 @@ const PORTFOLIO = [
     category: 'Bridal Gharara',
     images: ['/images/portfolio/gallery-3.jpg', '/images/portfolio/gallery-4.jpg'],
     priceUsd: 2200,
-    tag: 'red-bridal',
+    tag: 'bridal',
     description: 'Rich maroon velvet bridal gharara with gold hand embroidery and statement dupatta. Perfect for baraat.',
   },
   {
@@ -28,7 +28,7 @@ const PORTFOLIO = [
     category: 'Heavy Bridal',
     images: ['/images/portfolio/gallery-5.jpg', '/images/portfolio/gallery-6.jpg'],
     priceUsd: 2500,
-    tag: 'red-bridal',
+    tag: 'bridal',
     description: 'Deep maroon bridal lehenga with all-over gold embroidery, kundan and sequin detailing on organza.',
   },
   {
@@ -37,7 +37,7 @@ const PORTFOLIO = [
     category: 'Bridal Gown',
     images: ['/images/portfolio/gallery-7.jpg', '/images/portfolio/gallery-8.jpg'],
     priceUsd: 1800,
-    tag: 'lehenga-choli',
+    tag: 'bridal',
     description: 'Rust and coral tones with hand embroidery, peacock motifs on cotton net shirt with banarsi jamawar lehnga.',
   },
   {
@@ -46,8 +46,80 @@ const PORTFOLIO = [
     category: 'Bridal Sharara',
     images: ['/images/portfolio/gallery-9.jpg', '/images/portfolio/gallery-10.jpg'],
     priceUsd: 2500,
-    tag: 'red-bridal',
+    tag: 'bridal',
     description: 'Classic red and gold barat jora with heavy hand embroidery, perfect for the traditional Pakistani bride.',
+  },
+  {
+    id: 6,
+    title: 'Pink Tissue Formal',
+    category: 'Formal Wear',
+    images: ['/images/portfolio/gallery-11a.jpg', '/images/portfolio/gallery-11b.jpg'],
+    priceUsd: 1200,
+    tag: 'formal',
+    description: 'Luxurious pink tissue fabric with intricate thread, tilla embroidery, sequin work and panni embellishments.',
+  },
+  {
+    id: 7,
+    title: 'Purple Lehnga Choli',
+    category: 'Lehnga Choli',
+    images: ['/images/portfolio/gallery-12a.jpg', '/images/portfolio/gallery-12b.jpg'],
+    priceUsd: 1800,
+    tag: 'formal',
+    description: 'Deep purple lehnga with luxurious hand embellishment, adda work and heavy sheesha-worked borders.',
+  },
+  {
+    id: 8,
+    title: 'Black Formal Ensemble',
+    category: 'Formal Wear',
+    images: ['/images/portfolio/gallery-13a.jpg', '/images/portfolio/gallery-13b.jpg'],
+    priceUsd: 1200,
+    tag: 'formal',
+    description: 'Elegant black formal with exotic handwork and a statement dupatta. Perfect for evening events.',
+  },
+  {
+    id: 9,
+    title: 'Nahsra Formal Collection',
+    category: 'Formal Wear',
+    images: ['/images/portfolio/gallery-14a.jpg', '/images/portfolio/gallery-14b.jpg'],
+    priceUsd: 1200,
+    tag: 'formal',
+    description: 'Designer formal wear with intricate detailing, ideal for weddings and special occasions.',
+  },
+  {
+    id: 10,
+    title: 'Nude Gold French Bridal',
+    category: 'Bridal Lehenga',
+    images: ['/images/portfolio/gallery-15a.jpg', '/images/portfolio/gallery-15b.jpg'],
+    priceUsd: 2500,
+    tag: 'bridal',
+    description: 'Nude-gold French lame bridal with delicate French net candy pink dupatta. Elegant and sophisticated.',
+  },
+  {
+    id: 11,
+    title: 'Mint Green Formal',
+    category: 'Formal Wear',
+    images: ['/images/portfolio/gallery-16a.jpg', '/images/portfolio/gallery-16b.jpg'],
+    priceUsd: 1200,
+    tag: 'formal',
+    description: 'Fresh mint green formal with heavy embroidered dupatta. A standout choice for mehndi and events.',
+  },
+  {
+    id: 12,
+    title: 'Designer Saree Collection',
+    category: 'Bridal Saree',
+    images: ['/images/portfolio/gallery-17a.jpg', '/images/portfolio/gallery-17b.jpg'],
+    priceUsd: 950,
+    tag: 'formal',
+    description: 'Premium designer saree with elegant draping and embroidered border work for formal occasions.',
+  },
+  {
+    id: 13,
+    title: 'Pearl White Formal',
+    category: 'Formal Wear',
+    images: ['/images/portfolio/gallery-18a.jpg', '/images/portfolio/gallery-18b.jpg'],
+    priceUsd: 1200,
+    tag: 'formal',
+    description: 'Stunning pearl white formal dress with delicate handwork. Perfect for nikkah and walima events.',
   },
 ];
 
@@ -150,8 +222,8 @@ const GalleryGrid = () => {
 
   const filters = [
     { key: 'all', label: 'All' },
-    { key: 'red-bridal', label: 'Heavy Bridal' },
-    { key: 'lehenga-choli', label: 'Lehenga & Gown' },
+    { key: 'bridal', label: 'Bridal' },
+    { key: 'formal', label: 'Formal & Party' },
   ];
 
   const filtered = filter === 'all' ? PORTFOLIO : PORTFOLIO.filter(p => p.tag === filter);
