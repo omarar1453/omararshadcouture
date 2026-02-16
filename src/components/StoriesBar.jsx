@@ -331,38 +331,40 @@ const StoriesBar = () => {
   return (
     <>
       {/* --- STORIES ROW --- */}
-      <section className="bg-ivory border-b border-divider-gold pt-16 sm:pt-18">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-2.5">
-          <div className="flex gap-3 overflow-x-auto scrollbar-hide items-start">
-            {STORIES.map((group, idx) => (
-              <button
-                key={group.id}
-                onClick={() => openStory(idx)}
-                className="flex flex-col items-center gap-1.5 flex-shrink-0 group"
-              >
-                <div
-                  className={`w-16 h-16 sm:w-[72px] sm:h-[72px] rounded-full p-[2.5px] transition-transform duration-300 group-hover:scale-105 ${
-                    viewedGroups.includes(group.id)
-                      ? 'bg-gradient-to-tr from-gray-300 to-gray-400'
-                      : 'bg-gradient-to-tr from-yellow-400 via-red-500 to-pink-500'
-                  }`}
+      <section className="pt-14 sm:pt-16">
+        <div className="bg-gradient-to-b from-[#1a1a1a] via-[#232323] to-[#1a1a1a] border-b border-[#333]">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 py-4 sm:py-5">
+            <div className="flex gap-4 sm:gap-5 overflow-x-auto scrollbar-hide items-start justify-start">
+              {STORIES.map((group, idx) => (
+                <button
+                  key={group.id}
+                  onClick={() => openStory(idx)}
+                  className="flex flex-col items-center gap-2 flex-shrink-0 group"
                 >
-                  <div className="w-full h-full rounded-full bg-ivory p-[2px]">
-                    <img
-                      src={group.thumbnail}
-                      alt={group.username}
-                      className="w-full h-full rounded-full object-cover"
-                      onError={(e) => {
-                        e.target.src = `https://placehold.co/72x72/FCF9F2/B8860B?text=${encodeURIComponent(group.username.charAt(0))}`;
-                      }}
-                    />
+                  <div
+                    className={`w-[74px] h-[74px] sm:w-[82px] sm:h-[82px] rounded-full p-[3px] transition-transform duration-300 group-hover:scale-105 ${
+                      viewedGroups.includes(group.id)
+                        ? 'bg-gradient-to-tr from-gray-500 to-gray-600'
+                        : 'bg-gradient-to-tr from-amber-400 via-red-500 to-pink-500'
+                    }`}
+                  >
+                    <div className="w-full h-full rounded-full bg-[#1a1a1a] p-[2.5px]">
+                      <img
+                        src={group.thumbnail}
+                        alt={group.username}
+                        className="w-full h-full rounded-full object-cover"
+                        onError={(e) => {
+                          e.target.src = `https://placehold.co/82x82/1a1a1a/B8860B?text=${encodeURIComponent(group.username.charAt(0))}`;
+                        }}
+                      />
+                    </div>
                   </div>
-                </div>
-                <span className="text-[10px] sm:text-xs text-text-secondary font-medium tracking-wide truncate max-w-[72px]">
-                  {group.username}
-                </span>
-              </button>
-            ))}
+                  <span className="text-[10px] sm:text-xs text-gray-300 font-medium tracking-wide truncate max-w-[80px]">
+                    {group.username}
+                  </span>
+                </button>
+              ))}
+            </div>
           </div>
         </div>
       </section>

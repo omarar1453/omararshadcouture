@@ -1,5 +1,5 @@
 @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Montserrat:wght@200;300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Montserrat:wght@200;300;400;500;600;700&family=Great+Vibes&display=swap');
 
 @theme {
   --color-ivory: #FCF9F2;
@@ -113,6 +113,10 @@
   to {
     background-position: 200% center;
   }
+}
+
+.font-logo {
+  font-family: 'Great Vibes', cursive;
 }
 
 .tracking-luxury {
