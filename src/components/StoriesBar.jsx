@@ -169,7 +169,7 @@ const StoriesBar = () => {
   return (
     <>
       {/* --- STORIES ROW --- */}
-      <section className="bg-ivory border-b border-divider-gold pt-14">
+      <section className="bg-ivory border-b border-divider-gold pt-16 sm:pt-18">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-2.5">
           <div className="flex gap-3 overflow-x-auto scrollbar-hide items-start">
             {STORIES.map((group, idx) => (
