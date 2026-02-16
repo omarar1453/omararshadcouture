@@ -1,15 +1,48 @@
 import React, { useState, useEffect } from 'react';
-import { MessageCircle } from 'lucide-react';
-import { openWhatsApp } from '../utils/tracking';
+import { Share2, Bookmark } from 'lucide-react';
+import { trackEvent } from '../utils/tracking';
 
 const StickyHeader = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [saved, setSaved] = useState(() => {
+    try { return localStorage.getItem('oa_saved') === '1'; } catch { return false; }
+  });
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const handleShare = async () => {
+    trackEvent('header_share_click');
+    const shareData = {
+      title: 'Omar Arshad Couture',
+      text: 'Custom Pakistani bridal wear — shipped worldwide. Check out their bridal collection!',
+      url: window.location.href,
+    };
+    try {
+      if (navigator.share) {
+        await navigator.share(shareData);
+      } else {
+        await navigator.clipboard.writeText(window.location.href);
+        alert('Link copied to clipboard!');
+      }
+    } catch (err) {
+      // User cancelled share
+    }
+  };
+
+  const handleSave = () => {
+    const newSaved = !saved;
+    setSaved(newSaved);
+    localStorage.setItem('oa_saved', newSaved ? '1' : '0');
+    trackEvent('header_save_click', { saved: newSaved });
+    if (newSaved) {
+      // Prompt to bookmark
+      alert('Saved! You can also bookmark this page (Ctrl+D / Cmd+D) to visit later.');
+    }
+  };
 
   return (
     <nav
@@ -20,18 +53,28 @@ const StickyHeader = () => {
       }`}
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-center relative">
-        {/* CTA button — absolutely positioned right */}
-        <button
-          onClick={() => openWhatsApp(
-            'Hi, I found you through your website and would like to discuss my bridal requirements.',
-            'header_cta'
-          )}
-          className="absolute right-4 sm:right-6 flex items-center gap-1.5 bg-antique-gold hover:bg-text-primary text-white px-3 sm:px-4 py-2 rounded-full text-xs font-medium transition-all shadow-sm hover:shadow-md tracking-wide"
-        >
-          <MessageCircle size={14} fill="white" strokeWidth={0} />
-          <span className="hidden sm:inline">Free Quote</span>
-          <span className="sm:hidden">Quote</span>
-        </button>
+        {/* Share & Save icons — right */}
+        <div className="absolute right-4 sm:right-6 flex items-center gap-3">
+          <button
+            onClick={handleShare}
+            className="text-text-primary hover:text-antique-gold transition-colors"
+            aria-label="Share"
+          >
+            <Share2 size={20} strokeWidth={1.8} />
+          </button>
+          <button
+            onClick={handleSave}
+            className="text-text-primary hover:text-antique-gold transition-colors"
+            aria-label="Save"
+          >
+            <Bookmark
+              size={20}
+              strokeWidth={1.8}
+              fill={saved ? 'currentColor' : 'none'}
+              className={saved ? 'text-antique-gold' : ''}
+            />
+          </button>
+        </div>
 
         {/* Centered brand logo */}
         <div className="flex flex-col items-center">

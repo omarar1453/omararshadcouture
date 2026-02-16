@@ -331,10 +331,10 @@ const StoriesBar = () => {
   return (
     <>
       {/* --- STORIES ROW --- */}
-      <section className="pt-14 sm:pt-16">
-        <div className="bg-gradient-to-b from-[#1a1a1a] via-[#232323] to-[#1a1a1a] border-b border-[#333]">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 py-4 sm:py-5">
-            <div className="flex gap-4 sm:gap-5 overflow-x-auto scrollbar-hide items-start justify-start">
+      <section className="pt-12 sm:pt-14">
+        <div className="bg-gradient-to-b from-[#2C2420] via-[#342C26] to-[#2C2420] border-b border-[#4A3F36]">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 py-5 sm:py-6">
+            <div className="flex gap-5 sm:gap-6 overflow-x-auto scrollbar-hide items-start justify-start">
               {STORIES.map((group, idx) => (
                 <button
                   key={group.id}
@@ -342,24 +342,24 @@ const StoriesBar = () => {
                   className="flex flex-col items-center gap-2 flex-shrink-0 group"
                 >
                   <div
-                    className={`w-[74px] h-[74px] sm:w-[82px] sm:h-[82px] rounded-full p-[3px] transition-transform duration-300 group-hover:scale-105 ${
+                    className={`w-[80px] h-[80px] sm:w-[92px] sm:h-[92px] rounded-full p-[3px] transition-transform duration-300 group-hover:scale-105 ${
                       viewedGroups.includes(group.id)
                         ? 'bg-gradient-to-tr from-gray-500 to-gray-600'
                         : 'bg-gradient-to-tr from-amber-400 via-red-500 to-pink-500'
                     }`}
                   >
-                    <div className="w-full h-full rounded-full bg-[#1a1a1a] p-[2.5px]">
+                    <div className="w-full h-full rounded-full bg-[#2C2420] p-[2.5px]">
                       <img
                         src={group.thumbnail}
                         alt={group.username}
                         className="w-full h-full rounded-full object-cover"
                         onError={(e) => {
-                          e.target.src = `https://placehold.co/82x82/1a1a1a/B8860B?text=${encodeURIComponent(group.username.charAt(0))}`;
+                          e.target.src = `https://placehold.co/92x92/2C2420/B8860B?text=${encodeURIComponent(group.username.charAt(0))}`;
                         }}
                       />
                     </div>
                   </div>
-                  <span className="text-[10px] sm:text-xs text-gray-300 font-medium tracking-wide truncate max-w-[80px]">
+                  <span className="text-[10px] sm:text-xs text-[#C4B5A5] font-medium tracking-wide truncate max-w-[88px]">
                     {group.username}
                   </span>
                 </button>
