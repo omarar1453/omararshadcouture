@@ -9,7 +9,7 @@ import { openWhatsApp, trackEvent } from '../utils/tracking';
 const STORIES = [
   {
     id: 1,
-    username: 'Bridal',
+    username: 'Zardozi Work',
     thumbnail: '/images/stories/story-1-thumb.jpg',
     items: [
       {
@@ -18,16 +18,16 @@ const STORIES = [
         src: '/videos/stories/story-1.mp4',
         poster: '/images/stories/story-1-poster.jpg',
         duration: 30000,
-        caption: 'Handcrafted bridal couture — made to order',
+        caption: 'Heavy zardozi & dabka hand embroidery on premium fabric',
         ctaText: 'Get a Free Quote',
-        ctaMessage: 'Hi, I saw your bridal collection story and I am interested in getting a custom outfit made.',
+        ctaMessage: 'Hi, I saw your zardozi embroidery story and I am interested in getting a custom outfit with similar handwork.',
         linkUrl: null,
       },
     ],
   },
   {
     id: 2,
-    username: 'Latest Work',
+    username: 'Red Bridal',
     thumbnail: '/images/stories/story-2-thumb.jpg',
     items: [
       {
@@ -36,16 +36,16 @@ const STORIES = [
         src: '/videos/stories/story-2.mp4',
         poster: '/images/stories/story-2-poster.jpg',
         duration: 30000,
-        caption: 'Custom designs crafted with love in Pakistan',
+        caption: 'Deep maroon bridal with gold neckline embroidery',
         ctaText: 'Enquire Now',
-        ctaMessage: 'Hi, I saw your latest work story. Can I get details and pricing for a custom bridal outfit?',
+        ctaMessage: 'Hi, I saw your red bridal story. Can I get a similar custom red bridal outfit made?',
         linkUrl: null,
       },
     ],
   },
   {
     id: 3,
-    username: 'Embroidery',
+    username: 'Nikkah Day',
     thumbnail: '/images/stories/story-3-thumb.jpg',
     items: [
       {
@@ -54,16 +54,16 @@ const STORIES = [
         src: '/videos/stories/story-3.mp4',
         poster: '/images/stories/story-3-poster.jpg',
         duration: 30000,
-        caption: 'Premium hand embroidery by master karigars',
+        caption: 'A stunning nikkah moment — custom bridal couture',
         ctaText: 'Get a Free Quote',
-        ctaMessage: 'Hi, I saw your embroidery story. Can I get a custom outfit with similar handwork?',
+        ctaMessage: 'Hi, I saw your nikkah story. Can I get a custom nikkah outfit made like this?',
         linkUrl: null,
       },
     ],
   },
   {
     id: 4,
-    username: 'New Arrival',
+    username: 'Ivory Bridal',
     thumbnail: '/images/stories/story-4-thumb.jpg',
     items: [
       {
@@ -72,16 +72,16 @@ const STORIES = [
         src: '/videos/stories/story-4.mp4',
         poster: '/images/stories/story-4-poster.jpg',
         duration: 30000,
-        caption: 'Just finished — fresh from our atelier',
+        caption: 'Ivory bridal gown with delicate lace & handwork',
         ctaText: 'Ask Price',
-        ctaMessage: 'Hi, I saw your new arrival story. What is the price for a similar custom outfit?',
+        ctaMessage: 'Hi, I saw your ivory bridal story. What is the price for a similar custom ivory outfit?',
         linkUrl: null,
       },
     ],
   },
   {
     id: 5,
-    username: 'Craftsmanship',
+    username: 'Red Dupatta',
     thumbnail: '/images/stories/story-5-thumb.jpg',
     items: [
       {
@@ -90,16 +90,16 @@ const STORIES = [
         src: '/videos/stories/story-5.mp4',
         poster: '/images/stories/story-5-poster.jpg',
         duration: 30000,
-        caption: 'Every stitch tells a story of tradition',
+        caption: 'Red bridal dupatta with gold tilla & sequin borders',
         ctaText: 'Get a Free Quote',
-        ctaMessage: 'Hi, I saw your craftsmanship story and would love a custom bridal outfit made with similar detail.',
+        ctaMessage: 'Hi, I saw your red dupatta story. Can I get a bridal outfit with a similar dupatta?',
         linkUrl: null,
       },
     ],
   },
   {
     id: 6,
-    username: 'Behind Scenes',
+    username: 'Peacock Motif',
     thumbnail: '/images/stories/story-6-thumb.jpg',
     items: [
       {
@@ -108,16 +108,16 @@ const STORIES = [
         src: '/videos/stories/story-6.mp4',
         poster: '/images/stories/story-6-poster.jpg',
         duration: 30000,
-        caption: 'Inside our workshop — where magic happens',
+        caption: 'Cream outfit with colorful peacock fan embroidery',
         ctaText: 'Enquire Now',
-        ctaMessage: 'Hi, I saw your behind the scenes story. Can I learn more about your custom bridal process?',
+        ctaMessage: 'Hi, I loved the peacock motif outfit in your story. Can I get something similar custom made?',
         linkUrl: null,
       },
     ],
   },
   {
     id: 7,
-    username: 'Detail Work',
+    username: 'Bridal Clutch',
     thumbnail: '/images/stories/story-7-thumb.jpg',
     items: [
       {
@@ -126,16 +126,16 @@ const STORIES = [
         src: '/videos/stories/story-7.mp4',
         poster: '/images/stories/story-7-poster.jpg',
         duration: 30000,
-        caption: 'Close-up of our signature hand embroidery',
+        caption: 'Handcrafted bridal clutch with gold fringe tassels',
         ctaText: 'Get a Free Quote',
-        ctaMessage: 'Hi, I loved the detail work in your story. Can I get a quote for a custom outfit?',
+        ctaMessage: 'Hi, I saw your bridal clutch story. Can I get a matching clutch with my bridal outfit?',
         linkUrl: null,
       },
     ],
   },
   {
     id: 8,
-    username: 'Fabric',
+    username: 'Sequin Work',
     thumbnail: '/images/stories/story-8-thumb.jpg',
     items: [
       {
@@ -144,16 +144,16 @@ const STORIES = [
         src: '/videos/stories/story-8.mp4',
         poster: '/images/stories/story-8-poster.jpg',
         duration: 30000,
-        caption: 'Premium fabrics selected for your dream outfit',
-        ctaText: 'Chat About Fabrics',
-        ctaMessage: 'Hi, I saw your fabric story. Can you help me choose the right fabric for my bridal outfit?',
+        caption: 'Sequin & crystal embellished fabric — up close',
+        ctaText: 'Get a Free Quote',
+        ctaMessage: 'Hi, I saw your sequin work story. Can I get a bridal outfit with similar sequin detailing?',
         linkUrl: null,
       },
     ],
   },
   {
     id: 9,
-    username: 'Barat Ready',
+    username: 'Pink Bridal',
     thumbnail: '/images/stories/story-9-thumb.jpg',
     items: [
       {
@@ -162,16 +162,16 @@ const STORIES = [
         src: '/videos/stories/story-9.mp4',
         poster: '/images/stories/story-9-poster.jpg',
         duration: 30000,
-        caption: 'Barat-ready bridal couture — shipped worldwide',
+        caption: 'Pink sequin bridal with maroon velvet accents',
         ctaText: 'Get a Free Quote',
-        ctaMessage: 'Hi, I saw your barat ready story. I want a custom barat outfit. Can I get a quote?',
+        ctaMessage: 'Hi, I saw your pink bridal story. Can I get a similar custom pink bridal outfit?',
         linkUrl: null,
       },
     ],
   },
   {
     id: 10,
-    username: 'Studio',
+    username: 'Crystal Work',
     thumbnail: '/images/stories/story-10-thumb.jpg',
     items: [
       {
@@ -180,16 +180,16 @@ const STORIES = [
         src: '/videos/stories/story-10.mp4',
         poster: '/images/stories/story-10-poster.jpg',
         duration: 30000,
-        caption: 'A day at Omar Arshad Couture studio',
+        caption: 'Heavy crystal & sequin embellishment — pure luxury',
         ctaText: 'Enquire Now',
-        ctaMessage: 'Hi, I saw your studio story. Can I get details about ordering a custom bridal outfit?',
+        ctaMessage: 'Hi, I saw your crystal work story. Can I get a custom outfit with similar embellishments?',
         linkUrl: null,
       },
     ],
   },
   {
     id: 11,
-    username: 'Showcase',
+    username: 'Collection',
     thumbnail: '/images/stories/story-11-thumb.jpg',
     items: [
       {
@@ -198,9 +198,9 @@ const STORIES = [
         src: '/videos/stories/story-11.mp4',
         poster: '/images/stories/story-11-poster.jpg',
         duration: 30000,
-        caption: 'Our latest collection — custom made for you',
+        caption: 'Our bridal collection — every piece custom made',
         ctaText: 'Get a Free Quote',
-        ctaMessage: 'Hi, I saw your showcase story. I would love to get a custom outfit made. Can I get a quote?',
+        ctaMessage: 'Hi, I saw your collection story. I would love to get a custom bridal outfit made.',
         linkUrl: null,
       },
     ],
