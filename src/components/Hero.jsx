@@ -71,26 +71,16 @@ const Hero = () => {
   };
 
   return (
-    <section className="relative flex items-center overflow-hidden bg-ivory py-10 sm:py-16">
-      {/* Background Image -- Replace with real hero image */}
-      <div className="absolute inset-0">
-        <img
-          src="/images/hero-bridal.jpg"
-          alt="Custom Pakistani bridal lehenga by Omar Arshad Couture"
-          className="w-full h-full object-cover"
-          onError={(e) => {
-            e.target.style.display = 'none';
-          }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-ivory via-ivory/90 to-ivory/60"></div>
-      </div>
+    <section className="relative overflow-hidden bg-ivory">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+        <div className="flex flex-col lg:flex-row items-center gap-6 lg:gap-10 py-8 sm:py-12 lg:py-16">
 
-      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 w-full">
-        <div className="max-w-2xl">
+          {/* LEFT — Text content */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
+            className="flex-1 text-center lg:text-left order-2 lg:order-1"
           >
             <span className="text-antique-gold tracking-[0.4em] uppercase text-[10px] font-bold mb-3 block">
               Omar Arshad Couture
@@ -101,11 +91,11 @@ const Hero = () => {
               <span className="text-antique-gold italic">{variant.highlight}</span>
             </h1>
 
-            <p className="text-text-secondary text-sm sm:text-base mb-3 leading-relaxed max-w-xl">
+            <p className="text-text-secondary text-sm sm:text-base mb-4 leading-relaxed max-w-xl mx-auto lg:mx-0">
               {variant.desc}
             </p>
 
-            <div className="flex flex-wrap gap-3 sm:gap-5 text-xs sm:text-sm text-text-secondary mb-6">
+            <div className="flex flex-wrap justify-center lg:justify-start gap-x-5 gap-y-2 text-xs sm:text-sm text-text-secondary mb-6">
               <span className="flex items-center gap-1.5">
                 <span className="w-1.5 h-1.5 rounded-full bg-antique-gold"></span>
                 From $950
@@ -124,7 +114,7 @@ const Hero = () => {
               </span>
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-2.5 sm:gap-3">
+            <div className="flex flex-col sm:flex-row justify-center lg:justify-start gap-2.5 sm:gap-3">
               <button
                 onClick={() => openWhatsApp(variant.whatsapp, 'hero_primary_cta')}
                 className="flex items-center justify-center gap-2 bg-antique-gold hover:bg-text-primary text-white px-5 py-3 rounded-full text-sm font-semibold transition-all shadow-md hover:shadow-lg"
@@ -142,6 +132,33 @@ const Hero = () => {
               </button>
             </div>
           </motion.div>
+
+          {/* RIGHT — Hero bridal image */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1, delay: 0.2 }}
+            className="flex-1 flex justify-center order-1 lg:order-2 w-full max-w-sm sm:max-w-md lg:max-w-none"
+          >
+            <div className="relative w-full max-w-[420px] lg:max-w-[480px]">
+              {/* Decorative gold border frame */}
+              <div className="absolute -inset-3 border border-antique-gold/20 rounded-2xl"></div>
+              <div className="absolute -inset-1.5 border border-antique-gold/10 rounded-xl"></div>
+
+              <img
+                src="/images/hero/hero-bridal.jpg"
+                alt="Custom Pakistani bridal lehenga with hand embroidery — red and gold bridal outfit by Omar Arshad Couture"
+                className="w-full h-auto rounded-xl object-cover shadow-2xl"
+                onError={(e) => {
+                  e.target.src = 'https://placehold.co/480x660/FCF9F2/B8860B?text=Bridal+Collection';
+                }}
+              />
+
+              {/* Subtle gradient overlay at bottom */}
+              <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-ivory/40 to-transparent rounded-b-xl"></div>
+            </div>
+          </motion.div>
+
         </div>
       </div>
     </section>
